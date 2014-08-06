@@ -1,0 +1,36 @@
+<!doctype html>
+<html data-ng-app>
+  <head>
+    <script type='text/javascript' src='js/angular.js'></script>
+  </head>
+  <body>
+    <div data-ng-init="data = {songs: [
+      {title: 'Walk Like An Egyptian', artist: 'The Bangles', duration: 180, released: true},
+      {title: 'Alone', artist: 'Heart', duration: 180, released: true},
+      {title: 'Shake You Down', artist: 'Gregory Abbott', duration: 180, released: true},
+      {title: 'Monkey 1', artist: 'Metal Monkeys', duration: 180, released: false},
+      {title: 'Monkey 2', artist: 'Metal Monkeys', duration: 180, released: false}
+    ], showAll: false}">
+      <h3>Songs</h3>
+
+      Show all songs: <input type='checkbox' data-ng-model="data.showAll"/>
+      <br/>
+
+      <!-- data-ng-repeat for a table -->
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Duration</th>
+        </tr>
+
+        <!-- create a row in the table for each song -->
+        <tr data-ng-repeat="song in data.songs" data-ng-show="song.released || data.showAll">
+          <td >{{ song.title }}</td>
+          <td>{{ song.artist }}</td>
+          <td>{{ song.duration }}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
