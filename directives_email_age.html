@@ -1,0 +1,23 @@
+<!doctype html>
+ <!-- 1. ng-app -->
+ <!-- Tells angular.js that this is an angular app -->
+ <html ng-app>
+  <head>
+    <!-- 2. angular javascript -->
+    <!-- include angular js -->
+    <script type="text/javascript" src='js/angular.js'>
+    </script>
+  </head>
+  <body>
+    <h1>First Angular View/App<h1>
+    <!-- 3. ng-model -->
+    <input type='text' ng-model='name' placeholder="Enter name"></input>
+    <input type='text' ng-model='email' placeholder="Enter email"></input>
+    <input type='text' ng-model='age' placeholder="Enter age"></input>
+        <!-- 4. {{ Data Binding Expresssion}} -->
+        <!-- Using the expression {{ .. }} show the value of the property -->
+        <p> Name: {{name}}</p>
+        <p> Email: {{email}}</p>
+        <p> Age: {{age}}</p>
+  </body>
+ </html>
