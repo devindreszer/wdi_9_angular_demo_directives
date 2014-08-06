@@ -5,13 +5,19 @@
   </head>
   <body>
     <div data-ng-init="data = {songs: [
-      {title: 'Walk Like An Egyptian', artist: 'The Bangles', duration: 180, released: true},
-      {title: 'Alone', artist: 'Heart', duration: 180, released: true},
-      {title: 'Shake You Down', artist: 'Gregory Abbott', duration: 180, released: true},
-      {title: 'Monkey 1', artist: 'Metal Monkeys', duration: 180, released: false},
-      {title: 'Monkey 2', artist: 'Metal Monkeys', duration: 180, released: false}
+      {title: 'Walk Like An Egyptian', artist: 'The Bangles', duration: 180, released: true, price: 1.99},
+      {title: 'Alone', artist: 'Heart', duration: 180, released: true, price: 0.99},
+      {title: 'Shake You Down', artist: 'Gregory Abbott', duration: 180, released: true, price: 1.29},
+      {title: 'Monkey 1', artist: 'Metal Monkeys', duration: 180, released: false, price: 1.49},
+      {title: 'Monkey 2', artist: 'Metal Monkeys', duration: 180, released: false, price: 2.99}
     ], showAll: false}">
       <h3>Songs</h3>
+      Filter by Title: <input type="text" ng-model="songFilter.title"/>
+      <br/>
+      Filter by Artist: <input type="text" ng-model="songFilter.artist"/>
+      <br/>
+      Filter by Price: <input type="text" ng-model="songFilter.price"/>
+      <br/>
 
       Show all songs: <input type='checkbox' data-ng-model="data.showAll"/>
       <br/>
@@ -19,16 +25,18 @@
       <!-- data-ng-repeat for a table -->
       <table>
         <tr>
-          <th>Title</th>
-          <th>Artist</th>
-          <th>Duration</th>
+          <th ng-click="sortBy='title';reverse=!reverse">Title</th>
+          <th ng-click="sortBy='artist';reverse=!reverse">Artist</th>
+          <th ng-click="sortBy='duration';reverse=!reverse">Duration</th>
+          <th ng-click="sortBy='price';reverse=!reverse">Price</th>
         </tr>
 
         <!-- create a row in the table for each song -->
-        <tr data-ng-repeat="song in data.songs" data-ng-show="song.released || data.showAll">
+        <tr data-ng-repeat="song in data.songs | filter: songFilter | orderBy:sortBy:reverse" data-ng-show="song.released || data.showAll" >
           <td >{{ song.title }}</td>
           <td>{{ song.artist }}</td>
           <td>{{ song.duration }}</td>
+          <td>{{ song.price | currency }}</td>
         </tr>
       </table>
     </div>
